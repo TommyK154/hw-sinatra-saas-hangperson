@@ -25,11 +25,22 @@ class HangpersonGame
 
   def guess(letter)
     raise ArgumentError if !(letter =~ /[a-z]{1}/i)
-    return false if (@guesses =~ /#{letter}/i)  or (@wrong_guesses =~ /#{letter}/i)
-    if (@word =~ /#{letter}/i)
-      @guesses += letter.downcase
+    return false if (@guesses =~ /#{letter}/i) or (@wrong_guesses =~ /#{letter}/i)
+    (@word =~ /#{letter}/i) ? @guesses += letter.downcase : @wrong_guesses += letter.downcase
+  end
+  
+  def word_with_guesses
+    displayed = @word
+    @guesses.length > 0 ? displayed.gsub(/[^#{guesses}]/i, '-') : displayed.gsub(/./, '-')
+  end
+  
+  def check_win_or_lose
+    if @word.delete(@guesses).empty? 
+      return :win
+    elsif @guesses.length + @wrong_guesses.length >= 7
+      return :lose
     else
-      @wrong_guesses += letter.downcase
+      return :play
     end
   end
   
