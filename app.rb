@@ -15,8 +15,6 @@ class HangpersonApp < Sinatra::Base
     session[:game] = @game
   end
   
-  # These two routes are good examples of Sinatra syntax
-  # to help you with the rest of the assignment
   get '/' do
     "<!DOCTYPE html><html><head></head><body><h1>Hello Again</h1></body></html>"
   end
