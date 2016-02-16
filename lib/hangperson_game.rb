@@ -16,7 +16,7 @@ class HangpersonGame
   end
 
   def guess(letter)
-    raise ArgumentError if !(letter =~ /[a-z]{1}/i)
+    raise ArgumentError unless (letter =~ /[a-z]{1}/i)
     return false if (@guesses =~ /#{letter}/i) or (@wrong_guesses =~ /#{letter}/i)
     (@word =~ /#{letter}/i) ? @guesses << letter.downcase : @wrong_guesses << letter.downcase
   end
